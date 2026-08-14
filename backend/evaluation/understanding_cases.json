@@ -1,0 +1,262 @@
+[
+  {
+    "query": "Tata vehicles in Mumbai",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": null,
+      "city": "Mumbai",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "Ashok Leyland under 9 lakh",
+    "expected": {
+      "brand": "Ashok Leyland",
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": 900000,
+      "city": null,
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "Tata Ace under 5 lakh",
+    "expected": {
+      "brand": "Tata",
+      "model": "Ace",
+      "year": null,
+      "usage": null,
+      "price": 500000,
+      "city": null,
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "Tata Yodha Pickup in Mumbai",
+    "expected": {
+      "brand": "Tata",
+      "model": "Yodha Pickup",
+      "year": null,
+      "usage": null,
+      "price": null,
+      "city": "Mumbai",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "diesel trucks in Pune",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": null,
+      "city": "Pune",
+      "body_type": "truck",
+      "fuel_type": "diesel"
+    }
+  },
+  {
+    "query": "petrol vehicles in Delhi",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": null,
+      "city": "Delhi",
+      "body_type": null,
+      "fuel_type": "petrol"
+    }
+  },
+  {
+    "query": "2022 Tata trucks",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": 2022,
+      "usage": null,
+      "price": null,
+      "city": null,
+      "body_type": "truck",
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "2019 diesel trucks in Mumbai",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": 2019,
+      "usage": null,
+      "price": null,
+      "city": "Mumbai",
+      "body_type": "truck",
+      "fuel_type": "diesel"
+    }
+  },
+  {
+    "query": "Tata trucks below 5 lakh",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": 500000,
+      "city": null,
+      "body_type": "truck",
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "vehicles less than 8 lakhs in Mumbai",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": 800000,
+      "city": "Mumbai",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "diesel Tata vehicles under 10 lakh",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": 1000000,
+      "city": null,
+      "body_type": null,
+      "fuel_type": "diesel"
+    }
+  },
+  {
+    "query": "Tata vehicles in Pune for agriculture",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": "farm/agriculture",
+      "price": null,
+      "city": "Pune",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "vehicles for delivery in Mumbai",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": null,
+      "usage": "delivery",
+      "price": null,
+      "city": "Mumbai",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "I need a truck for delivery in Pune",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": null,
+      "usage": "delivery",
+      "price": null,
+      "city": "Pune",
+      "body_type": "truck",
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "Ashok Leyland trucks in Mumbai under 15 lakh",
+    "expected": {
+      "brand": "Ashok Leyland",
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": 1500000,
+      "city": "Mumbai",
+      "body_type": "truck",
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "2023 Tata Ace in Pune under 6 lakh",
+    "expected": {
+      "brand": "Tata",
+      "model": "Ace",
+      "year": 2023,
+      "usage": null,
+      "price": 600000,
+      "city": "Pune",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "Tata trucks for construction",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": "construction",
+      "price": null,
+      "city": null,
+      "body_type": "truck",
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "Find me a Tata diesel truck in Mumbai for delivery under 10 lakh",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": "delivery",
+      "price": 1000000,
+      "city": "Mumbai",
+      "body_type": "truck",
+      "fuel_type": "diesel"
+    }
+  },
+  {
+    "query": "I am looking for something from Tata in Mumbai",
+    "expected": {
+      "brand": "Tata",
+      "model": null,
+      "year": null,
+      "usage": null,
+      "price": null,
+      "city": "Mumbai",
+      "body_type": null,
+      "fuel_type": null
+    }
+  },
+  {
+    "query": "I need a diesel vehicle for goods transport",
+    "expected": {
+      "brand": null,
+      "model": null,
+      "year": null,
+      "usage": "goods transport",
+      "price": null,
+      "city": null,
+      "body_type": null,
+      "fuel_type": "diesel"
+    }
+  }
+]

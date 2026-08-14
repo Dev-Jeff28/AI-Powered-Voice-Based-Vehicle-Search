@@ -1,20 +1,28 @@
 from openai import OpenAI
-from dotenv import load_dotenv
-import os
 
 from app.clients.llm_client import LLMClient
 
-load_dotenv()
+
+# =========================
+# CONFIG
+# =========================
+
+#GEMINI_API_KEY = "Your_Gemini_API_Key_Here"  # Replace with your actual Gemini API key
+#GEMINI_MODEL = "gemini-3.6-flash"
 
 
 class GeminiClient(LLMClient):
 
     def __init__(self):
 
-        api_key = os.getenv("GEMINI_API_KEY")
-        model = os.getenv("GEMINI_MODEL")
+        api_key = GEMINI_API_KEY
+        model = GEMINI_MODEL
+
         print("GEMINI KEY EXISTS:", bool(api_key))
-        print("GEMINI KEY PREFIX:", api_key[:8] if api_key else None)
+        print(
+            "GEMINI KEY PREFIX:",
+            api_key[:8] if api_key else None
+        )
         print("GEMINI MODEL:", model)
 
         if not api_key:
@@ -30,7 +38,10 @@ class GeminiClient(LLMClient):
         try:
 
             self._client = OpenAI(
-                base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+                base_url=(
+                    "https://generativelanguage.googleapis.com/"
+                    "v1beta/openai/"
+                ),
                 api_key=api_key
             )
 
@@ -54,7 +65,7 @@ class GeminiClient(LLMClient):
             messages=[
                 {
                     "role": "user",
-                    "content": prompt
+                    "content": str(prompt)
                 }
             ]
         )

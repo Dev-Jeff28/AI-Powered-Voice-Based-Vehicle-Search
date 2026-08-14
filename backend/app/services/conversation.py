@@ -4,6 +4,7 @@ from app.models.searchResponse import SearchResponse
 from app.repositories.interface_repository import interfaceRepository
 from app.services.response import ResponseService
 from app.services.understanding import UnderstandingService
+from app.services.search import SearchService
 
 
 class ConversationService:
@@ -13,12 +14,14 @@ class ConversationService:
         memory: Memory,
         repository: interfaceRepository,
         response_service: ResponseService,
-        understanding_service: UnderstandingService
+        understanding_service: UnderstandingService,
+        search_service: SearchService
     ):
         self._memory = memory
         self._repository = repository
         self._response_service = response_service
         self._understanding_service = understanding_service
+        self._search_service = search_service
 
     def handle(
         self,
@@ -54,28 +57,73 @@ class ConversationService:
             if vehicle is None:
                 return None
 
-            return self._response_service.respond_about_vehicle(
-                vehicle
+            response = (
+                self._response_service.respond_about_vehicle(
+                    vehicle,
+                    query
+                )
             )
 
-        # Otherwise treat this as a new/refined search
+            self._add_to_history(
+                session_id,
+                query,
+                response.assistant_response
+            )
+
+            return response
+
+        # Understand the current query
         new_search_query = (
-            self._understanding_service.understand_query(
-                query
+            self._understanding_service.understand(
+                query,
+                session_id
             )
         )
+
         print("New SearchQuery:")
         print(new_search_query)
 
+        # Merge current search criteria with
+        # the existing application search state.
         merged_search_query = self._merge_search_query(
             memory.search_query,
             new_search_query
         )
+
         print("Merged SearchQuery:")
         print(merged_search_query)
-        return self._understanding_service.search(
+
+        # Search
+        response = self._search_service.search(
             merged_search_query,
             session_id
+        )
+
+        self._add_to_history(
+            session_id,
+            query,
+            response.assistant_response
+        )
+
+        return response
+
+    def _add_to_history(
+        self,
+        session_id: str,
+        query: str,
+        assistant_response: str
+    ) -> None:
+
+        history = self._memory.get_message_history(
+            session_id
+        )
+
+        history.add_user_message(
+            query
+        )
+
+        history.add_ai_message(
+            assistant_response
         )
 
     def _merge_search_query(

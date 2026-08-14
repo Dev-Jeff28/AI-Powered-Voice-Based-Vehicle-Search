@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Tata vehicles",
+    "query": {
+      "brand": "Tata"
+    }
+  },
+  {
+    "name": "Tata in Mumbai",
+    "query": {
+      "brand": "Tata",
+      "city": "Mumbai"
+    }
+  },
+  {
+    "name": "Vehicles in Mumbai",
+    "query": {
+      "city": "Mumbai"
+    }
+  },
+  {
+    "name": "Vehicles under 5 lakh",
+    "query": {
+      "price": 500000
+    }
+  },
+  {
+    "name": "Tata under 5 lakh",
+    "query": {
+      "brand": "Tata",
+      "price": 500000
+    }
+  },
+  {
+    "name": "Tata under 10 lakh in Mumbai",
+    "query": {
+      "brand": "Tata",
+      "price": 1000000,
+      "city": "Mumbai"
+    }
+  },
+  {
+    "name": "Diesel vehicles",
+    "query": {
+      "fuel_type": "diesel"
+    }
+  },
+  {
+    "name": "Diesel trucks",
+    "query": {
+      "fuel_type": "diesel",
+      "body_type": "truck"
+    }
+  },
+  {
+    "name": "Trucks in Mumbai",
+    "query": {
+      "body_type": "truck",
+      "city": "Mumbai"
+    }
+  },
+  {
+    "name": "Tata trucks in Mumbai",
+    "query": {
+      "brand": "Tata",
+      "body_type": "truck",
+      "city": "Mumbai"
+    }
+  },
+  {
+    "name": "2022 Tata vehicles",
+    "query": {
+      "brand": "Tata",
+      "year": 2022
+    }
+  },
+  {
+    "name": "2020 vehicles in Mumbai",
+    "query": {
+      "year": 2020,
+      "city": "Mumbai"
+    }
+  },
+  {
+    "name": "Delivery vehicles",
+    "query": {
+      "usage": "delivery"
+    }
+  },
+  {
+    "name": "Tata delivery vehicles",
+    "query": {
+      "brand": "Tata",
+      "usage": "delivery"
+    }
+  },
+  {
+    "name": "Tata diesel trucks under 10 lakh in Mumbai",
+    "query": {
+      "brand": "Tata",
+      "fuel_type": "diesel",
+      "body_type": "truck",
+      "price": 1000000,
+      "city": "Mumbai"
+    }
+  }
+]

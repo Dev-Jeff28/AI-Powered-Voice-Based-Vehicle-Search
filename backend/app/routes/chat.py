@@ -1,17 +1,12 @@
 from fastapi import APIRouter
 
-from app.services.conversation import ConversationService
-from app.services.understanding import UnderstandingService
 from app.memory.memory import Memory
+from app.services.conversation import ConversationService
 from app.session.session import create_session_id
-
-
-router = APIRouter()
 
 
 def create_chat_router(
     memory: Memory,
-    understanding_service: UnderstandingService,
     conversation_service: ConversationService
 ):
     router = APIRouter()
@@ -36,28 +31,24 @@ def create_chat_router(
                 session_id
             )
 
-        conversation_response = conversation_service.handle(
-            query,
-            session_id
+        conversation_response = (
+            conversation_service.handle(
+                query,
+                session_id
+            )
         )
 
-        if conversation_response is not None:
+        if conversation_response is None:
 
             return {
                 "session_id": session_id,
-                "assistant_response":
-                    conversation_response.assistant_response
+                "assistant_response": None
             }
-
-        response = understanding_service.understand(
-            query,
-            session_id
-        )
 
         return {
             "session_id": session_id,
             "assistant_response":
-                response.assistant_response
+                conversation_response.assistant_response
         }
 
     return router

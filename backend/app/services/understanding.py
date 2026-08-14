@@ -1,25 +1,23 @@
 from pathlib import Path
 
-from app.clients.llm_client import LLMClient
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
+from app.llm import get_llm
+from app.memory.memory import Memory
 from app.models.searchQuery import SearchQuery
-from app.models.searchResponse import SearchResponse
-from app.services.search import SearchService
 
 
 class UnderstandingService:
 
-    def __init__(
-        self,
-        llm_client: LLMClient,
-        search_service: SearchService
-    ):
-        self._llm_client = llm_client
-        self._search_service = search_service
+    def __init__(self, memory: Memory):
+        self._memory = memory
 
-    def understand_query(
-        self,
-        query: str
-    ) -> SearchQuery:
+        self.llm = get_llm()
+
+        self.structured_llm = self.llm.with_structured_output(
+            SearchQuery,
+            method="json_schema"
+        )
 
         prompt_path = (
             Path(__file__).parent.parent
@@ -31,60 +29,43 @@ class UnderstandingService:
             encoding="utf-8"
         )
 
-        prompt = prompt.replace(
-            "{query}",
-            query
-        )
+        self.prompt = ChatPromptTemplate.from_messages([
+            (
+                "system",
+                prompt
+            ),
+            MessagesPlaceholder(
+                variable_name="history"
+            ),
+            (
+                "human",
+                "{query}"
+            )
+        ])
 
-        response = self._llm_client.generate(
-            prompt
-        )
-
-        response = response.strip()
-
-        # Remove markdown code fences if the LLM adds them
-        if response.startswith("```json"):
-            response = response[7:]
-
-        elif response.startswith("```"):
-            response = response[3:]
-
-        if response.endswith("```"):
-            response = response[:-3]
-
-        response = response.strip()
-
-        search_query = SearchQuery.model_validate_json(
-            response
-        )
-
-        return search_query
-
-    def search(
-        self,
-        search_query: SearchQuery,
-        session_id: str
-    ) -> SearchResponse:
-
-        return self._search_service.search(
-            search_query,
-            session_id
+        self.chain = (
+            self.prompt
+            | self.structured_llm
         )
 
     def understand(
         self,
         query: str,
         session_id: str
-    ) -> SearchResponse:
+    ) -> SearchQuery:
 
-        search_query = self.understand_query(
-            query
-        )
-
-        print("Object Created")
-        print(search_query)
-
-        return self.search(
-            search_query,
+        history = self._memory.get_message_history(
             session_id
         )
+
+        response = self.chain.invoke({
+            "history": history.messages,
+            "query": query
+        })
+
+        print(
+            "Understanding Response:",
+            response
+        )
+
+        return response
