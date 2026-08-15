@@ -55,8 +55,9 @@ backend/.env
 Add:
 
 ```env
-OPENROUTER_API_KEY=
-OPENROUTER_MODEL=google/gemma-4-31b-it:free
+OPENROUTER_API_KEY="Your_Key"
+OPENROUTER_MODEL="google/gemma-4-26b-a4b-it:free"
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 ```
 
 Add your OpenRouter API key after `OPENROUTER_API_KEY=`.
@@ -70,52 +71,6 @@ backend/app/prompts/
 ```
 
 Make sure the required prompt files are present before running the application.
-
----
-
-## Using Local Ollama
-
-The application can also use a locally installed Ollama model instead of OpenRouter.
-
-The Ollama configuration is defined in:
-
-```text
-backend/app/config.py
-```
-
-### Switch the LLM Client
-
-Open:
-
-```text
-backend/app/main.py
-```
-
-Change:
-
-```python
-from app.clients.openrouter_client import OpenRouterClient
-```
-
-to:
-
-```python
-from app.clients.ollama_client import OllamaClient
-```
-
-Then change:
-
-```python
-llm_client = OpenRouterClient()
-```
-
-to:
-
-```python
-llm_client = OllamaClient()
-```
-
-Make sure Ollama is installed and the configured model is available locally.
 
 ---
 
